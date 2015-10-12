@@ -1,0 +1,20 @@
+bool isBadVersion(int version);
+
+class Solution {
+public:
+    int firstBadVersion(int n) {
+        int low=1;
+        int high=n;
+        
+        if(isBadVersion(1)) return 1;
+        
+        while(low<=high)
+        {
+            int mid=low+(high-low)/2;//防止数据溢出,(low+high)/2可能会超过整数最大值?
+            if(!isBadVersion(mid))  low=mid+1;
+            else if(!isBadVersion(mid-1)) return mid;
+            else high=mid-1;
+        }
+        
+    }
+};
